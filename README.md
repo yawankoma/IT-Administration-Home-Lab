@@ -10,10 +10,10 @@
 - [Business Context](#business-context)
 - [Environment & Tools](#environment--tools)
 - [Network Topology](#network-topology)
-- [Scenario 1 - Full User Lifecycle](#scenario-1--full-user-lifecycle)
-- [Scenario 2 - Group Policy Security Controls](#scenario-2--group-policy-security-controls)
-- [Scenario 3 - Security Groups & Access Control](#scenario-3--security-groups--access-control)
-- [Scenario 4 - Shared Folder & Department Permissions](#scenario-4--shared-folder--department-permissions)
+- [Scenario 1 - Full User Lifecycle](#scenario-1-full-user-lifecycle)
+- [Scenario 2 - Group Policy Security Controls](#scenario-2-group-policy-security-controls)
+- [Scenario 3 - Security Groups & Access Control](#scenario-3-security-groups--access-control)
+- [Scenario 4 - Shared Folder & Department Permissions](#scenario-4-shared-folder--department-permissions)
 - [Skills Demonstrated](#skills-demonstrated)
 
 ---
