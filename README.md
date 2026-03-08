@@ -176,8 +176,8 @@ sko.com
 
 **Result:** Kwame's access was fully revoked within minutes. Account preserved in `_DISABLED_ACCOUNTS` for audit purposes per company policy.
 
-![Account Disabled](./screenshots/1d-account-disabled.png)
-![Disabled Users OU](./screenshots/1d-disabled-ou.png)
+![Account Disabled](images/Screenshot6.png)
+![Disabled Users OU](images/Screenshot7.png)
 
 ---
 
