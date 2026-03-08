@@ -302,107 +302,100 @@ Run on CLIENT-WIN11 to confirm policies applied without waiting for the default 
 
 > **Key Takeaway:** A single GPO applied at the domain level instantly enforced security standards across every machine in S.K.O Corporation — no manual configuration required on individual PCs. This is the power of centralized Group Policy management.
 
-
 ---
 
-## Scenario 4 — Shared Folder & Department Permissions
-
+# Scenario 3 — Security Groups & Access Control
 
 ## Business Context
 
-> The Finance Manager at S.K.O Corporation raised a concern: *"Anyone in the company can access our financial files on the server. This needs to be restricted immediately."* I was tasked with creating department-specific shared folders on the server and ensuring each department can only access their own folder — nobody else's.
+> As S.K.O Corporation grew, managing folder permissions for individual users became unsustainable. Assigning access one person at a time meant every new hire, department transfer, or resignation required manual permission changes across multiple folders. I replaced this with a **Security Group model** — the industry standard for scalable access control in Active Directory environments.
+
+---
+
+## The Problem With Assigning Permissions to Individual Users
+
+| Situation | Without Groups | With Security Groups |
+|-----------|---------------|---------------------|
+| New employee joins HR | Manually add to every HR resource | Add to HRG — done |
+| Employee moves to Finance | Remove from every HR resource, add to every Finance resource | Remove from HRG, add to Finance-Group — done |
+| Employee leaves | Hunt down every permission entry | Disable account — access revoked everywhere instantly |
+
+---
+
+## Security Groups Created
+
+| Group | Location | Members | Purpose |
+|-------|----------|---------|---------|
+| `HRG` | `_HR` OU | HR department users | Controls access to HR resources |
+| `Finance-Group` | `_FINANCE` OU | Finance department users | Controls access to Finance resources |
+| `IT-Group` | `_IT` OU | IT staff | Controls access to IT resources + read access across departments for support |
+
+![Security Groups in AD](./screenshots/3a-security-groups.png)
+![Group Members](./screenshots/3b-group-members.png)
+
+---
+
+# Scenario 4 — Shared Folder & Department Permissions
+
+## Business Context
+
+> The Finance Manager at S.K.O Corporation raised a concern: *"Anyone in the company can access our financial files. This is a serious risk."* As the IT Administrator, I designed and implemented a secure departmental file share on the domain — using the Security Groups created in Scenario 3 to enforce strict access boundaries between departments.
 
 ---
 
 ## What I Built
 
-Created three shared folders on **DC01** — one per department. Each folder is accessible only to its respective department users. HR cannot see Finance files. Finance cannot see IT files. And so on.
-
----
-
-## Step 1 — Create the Folder Structure on DC01
-
-Created a root shared folder on the server with department subfolders:
-
-```
-C:\S.K.O Corporation\
-├── HR\
-├── IT\
-└── Finance\
-```
-
----
-
-## Step 2 — Share the Root Folder
-
-- Right-clicked `S.K.O Corporation` → **Properties → Sharing → Advanced Sharing**
-- Checked **"Share this folder"**
-- Share name: `S.K.O Corporation`
-- Set share permissions to **Everyone — Read** (NTFS permissions handle the real security)
-
----
-
-# Scenario 3 — Shared Folder & Department Permissions
-
-## Business Context
-
-> The Finance Manager at S.K.O Corporation raised a concern: *"Anyone in the company can access our financial files. This is a serious risk."* As the IT Administrator, I designed and implemented a secure departmental file share on the domain — ensuring each department can only access their own files.
-
----
-
-## What I Built
-
-A central shared folder `S.K.O Corporation` on **DC01** with three department subfolders. Access is locked down so each department only sees and accesses their own folder — nothing else.
+A central shared folder `SKO_Corporation` on **DC01** with three department subfolders. Access is locked down so each department only sees and accesses their own folder — nothing else.
 
 ```
 \\DC01\SKO_Corporation\
-├── HR\        → HR staff only
-├── IT\        → IT staff only
-└── Finance\   → Finance staff only
+├── HR\        → HRG only
+├── IT\        → IT-Group only
+└── Finance\   → Finance-Group only
 ```
 
 ---
 
-## How Access Control Works
+## Access Control Matrix
 
-Permissions are assigned to **Security Groups**, not individual users. This means:
-- New employee joins HR? Add them to `HRG` — they instantly get HR folder access
-- Employee moves departments? Remove from one group, add to another — done
-- No manual folder permission changes ever needed
+| Group | HR Folder | Finance Folder | IT Folder |
+|-------|-----------|---------------|-----------|
+| HRG | Modify | No access | No access |
+| Finance-Group | No access | Modify | No access |
+| IT-Group | Read | Read | Full Control |
+| Domain Admins | Full Control | Full Control | Full Control |
 
-| Group | Folder Access | Blocked From |
-|-------|-------------|-------------|
-| HRG | HR — Modify | Finance, IT |
-| Finance-Group | Finance — Modify | HR, IT |
-| IT-Group | IT — Full Control | HR, Finance |
-| Domain Admins | All folders | — |
+> IT-Group has read access across all folders for support purposes — but cannot modify or delete department files.
 
 ---
 
 ## Access Test Results
 
-Logged into **CLIENT-WIN11** as HR user `sko\amensah` and tested access:
+Logged into **CLIENT-WIN11** as HR user `sko\alsmith` and tested access:
 
 | Folder | Result |
 |--------|--------|
-| `\\DC01\SKO_Corporation\HR` | Accessible |
-| `\\DC01\SKO_Corporation\Finance` | Folder not visible |
+| `\\DC01\SKO_Corporation\HR` |  Accessible |
+| `\\DC01\SKO_Corporation\Finance` |  Folder not visible |
 | `\\DC01\SKO_Corporation\IT` |  Folder not visible |
 
 > Finance and IT folders are completely invisible to HR users — not just blocked, but hidden entirely. Unauthorized users have no visibility into what other departments store on the server.
 
-![HR Mapped Drive - Only HR Folder Visible](images/Screenshot16.png)
-![Finance Folder Hidden from HR User](images/Screenshot17.png)
+![HR Mapped Drive - Only HR Folder Visible](images/Screenshot17.png)
 ![Finance Folder Hidden from HR User](images/Screenshot18.png)
 
 ---
 
 ## Summary
 
-> **Key Takeaway:** S.K.O Corporation's file server now enforces strict departmental boundaries. Sensitive Finance data is invisible to HR and IT staff. A new employee automatically inherits the correct folder access the moment they are added to their department's security group — no manual intervention required.
+> **Key Takeaway:** By combining shared folders with NTFS permissions and the Security Groups from Scenario 3, S.K.O Corporation now has a secure, scalable file access system. Sensitive Finance data is completely invisible to HR and IT staff. Adding a new employee to a Security Group automatically grants them the correct folder access — no manual permission changes needed.
 
 
 ---
+
+## Summary
+
+> **Key Takeaway:** Security Groups transformed S.K.O Corporation's access control from a manual, error-prone process into a scalable system. One group change instantly updates a user's access across every resource in the domain — exactly how enterprise environments manage permissions at scale.
 
 
 ## Skills Demonstrated
