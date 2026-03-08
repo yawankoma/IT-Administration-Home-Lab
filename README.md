@@ -342,83 +342,63 @@ C:\S.K.O Corporation\
 
 ---
 
-## Step 3 — Set NTFS Permissions Per Folder
+# Scenario 3 — Shared Folder & Department Permissions
 
-This is where the actual access control happens. For each department folder:
+## Business Context
 
-### HR Folder
-| User / Group | Permission | Access |
-|-------------|-----------|--------|
-| HR-Group | Modify | Full access to HR folder |
-| IT-Group | Read | IT can read (for support) |
-| Finance-Group | None | No access |
-| Domain Admins | Full Control | Admin access |
-
-### Finance Folder
-| User / Group | Permission | Access |
-|-------------|-----------|--------|
-| Finance-Group | Modify | Full access to Finance folder |
-| IT-Group | Read | IT can read (for support) |
-| HR-Group | None | No access |
-| Domain Admins | Full Control | Admin access |
-
-### IT Folder
-| User / Group | Permission | Access |
-|-------------|-----------|--------|
-| IT-Group | Full Control | Full access to IT folder |
-| HR-Group | None | No access |
-| Finance-Group | None | No access |
-| Domain Admins | Full Control | Admin access |
-
-> **Note:** Security Groups (HR-Group, Finance-Group, IT-Group) were used instead of assigning permissions to individual users. This means adding a new employee to a group automatically grants them the correct folder access — no manual permission changes needed.
+> The Finance Manager at S.K.O Corporation raised a concern: *"Anyone in the company can access our financial files. This is a serious risk."* As the IT Administrator, I designed and implemented a secure departmental file share on the domain — ensuring each department can only access their own files.
 
 ---
 
-## Step 4 — Map the Drive on CLIENT-WIN11
+## What I Built
 
-Logged into CLIENT-WIN11 as an HR user (`sko\alsmith`) and mapped the shared drive:
+A central shared folder `S.K.O Corporation` on **DC01** with three department subfolders. Access is locked down so each department only sees and accesses their own folder — nothing else.
 
 ```
-\\DC01\S.K.O Corporation
+\\DC01\SKO_Corporation\
+├── HR\        → HR staff only
+├── IT\        → IT staff only
+└── Finance\   → Finance staff only
 ```
-
-- Opened **File Explorer → This PC → Map Network Drive**
-- Drive letter: `Z:`
-- Path: `\\S.K.O Corporation`
-
-![Mapped Drive](./screenshots/3a-mapped-drive.png)
 
 ---
 
-## Step 5 — Test Access Controls
+## How Access Control Works
 
-### Test 1 — HR user accessing HR folder
-- Logged in as `sko\alsmith` (HR)
-- Navigated to `Z:\HR` — **Access granted**
+Permissions are assigned to **Security Groups**, not individual users. This means:
+- New employee joins HR? Add them to `HRG` — they instantly get HR folder access
+- Employee moves departments? Remove from one group, add to another — done
+- No manual folder permission changes ever needed
 
-### Test 2 — HR user accessing Finance folder
-- Same user navigated to `Z:\Finance`
-- **Access Denied** — permission correctly blocked
+| Group | Folder Access | Blocked From |
+|-------|-------------|-------------|
+| HRG | HR — Modify | Finance, IT |
+| Finance-Group | Finance — Modify | HR, IT |
+| IT-Group | IT — Full Control | HR, Finance |
+| Domain Admins | All folders | — |
 
-![Access Denied](./screenshots/3b-access-denied.png)
+---
 
-### Test 3 — Finance user accessing Finance folder
-- Logged in as Finance user
-- Navigated to `Z:\Finance` — **Access granted**
+## Access Test Results
 
-![Access Granted](./screenshots/3c-access-granted.png)
+Logged into **CLIENT-WIN11** as HR user `sko\amensah` and tested access:
+
+| Folder | Result |
+|--------|--------|
+| `\\DC01\SKO_Corporation\HR` | Accessible |
+| `\\DC01\SKO_Corporation\Finance` | Folder not visible |
+| `\\DC01\SKO_Corporation\IT` |  Folder not visible |
+
+> Finance and IT folders are completely invisible to HR users — not just blocked, but hidden entirely. Unauthorized users have no visibility into what other departments store on the server.
+
+![HR Mapped Drive - Only HR Folder Visible](./screenshots/3a-hr-drive.png)
+![Finance Folder Hidden from HR User](./screenshots/3b-finance-hidden.png)
 
 ---
 
 ## Summary
 
-| Folder | Accessible By | Blocked From |
-|--------|--------------|-------------|
-| `\HR` | HR-Group, IT-Group | Finance-Group |
-| `\Finance` | Finance-Group, IT-Group | HR-Group |
-| `\IT` | IT-Group | HR-Group, Finance-Group |
-
-> **Key Takeaway:** By combining shared folders with NTFS permissions and security groups, S.K.O Corporation now has a secure, scalable file access system. Adding a new Finance employee simply requires adding them to Finance-Group — their folder access is automatically applied with no extra steps.
+> **Key Takeaway:** S.K.O Corporation's file server now enforces strict departmental boundaries. Sensitive Finance data is invisible to HR and IT staff. A new employee automatically inherits the correct folder access the moment they are added to their department's security group — no manual intervention required.
 
 
 ---
