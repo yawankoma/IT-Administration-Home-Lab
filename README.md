@@ -391,8 +391,9 @@ Logged into **CLIENT-WIN11** as HR user `sko\amensah` and tested access:
 
 > Finance and IT folders are completely invisible to HR users — not just blocked, but hidden entirely. Unauthorized users have no visibility into what other departments store on the server.
 
-![HR Mapped Drive - Only HR Folder Visible](./screenshots/3a-hr-drive.png)
-![Finance Folder Hidden from HR User](./screenshots/3b-finance-hidden.png)
+![HR Mapped Drive - Only HR Folder Visible](images/Screenshot16.png)
+![Finance Folder Hidden from HR User](images/Screenshot17.png)
+![Finance Folder Hidden from HR User](images/Screenshot18.png)
 
 ---
 
