@@ -330,8 +330,8 @@ Run on CLIENT-WIN11 to confirm policies applied without waiting for the default 
 | `Finance-Group` | `_FINANCE` OU | Finance department users | Controls access to Finance resources |
 | `IT-Group` | `_IT` OU | IT staff | Controls access to IT resources + read access across departments for support |
 
-![Security Groups in AD](./screenshots/3a-security-groups.png)
-![Group Members](./screenshots/3b-group-members.png)
+![Security Groups in AD](.images/Screenshot18.png)
+![Group Members](images/Screenshot19.png)
 
 ---
 
