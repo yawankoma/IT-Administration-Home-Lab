@@ -142,7 +142,7 @@ sko.com
 
 **Result:** Alice successfully logged into her workstation and was prompted to set her own password on first login.
 
-![Onboarding Screenshot](./screenshots/1a-user-created.png)
+![Onboarding Screenshot](images/Screenshot 2026-03-08 174909.png)
 ![First Login](./screenshots/1a-first-login.png)
 
 ---
