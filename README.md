@@ -197,7 +197,111 @@ sko.com
 
 ## Scenario 2 — Group Policy Security Controls
 
-> *Coming soon — Password Policy, Account Lockout, Screen Lock, Control Panel Restriction*
+## Business Context
+
+> The management team at S.K.O Corporation raised security concerns after an employee used a weak password that was easily guessed. I was tasked with enforcing company-wide security policies across all domain-joined machines to prevent unauthorized access and protect company data.
+
+---
+
+## What I Configured
+
+A Group Policy Object (GPO) named **"Password Policy"** was created and linked to the `sko.com` domain, applying the following controls to all users and machines on the network.
+
+---
+
+## 2a. Password Policy
+
+**Problem:** Employees were setting weak passwords like `password123` or `abc123`.
+
+**Policy Applied:**
+
+| Setting | Value | Reason |
+|---------|-------|--------|
+| Minimum password length | 8 characters | Prevents short weak passwords |
+| Password complexity | Enabled | Requires uppercase, lowercase, numbers and symbols |
+| Maximum password age | 90 days | Forces regular password changes |
+| Minimum password age | 1 day | Prevents bypassing password history |
+
+
+**Result:** All domain users are now required to use strong passwords. Weak passwords are rejected by the system automatically.
+
+![Password Policy](./screenshots/2a-password-policy.png)
+
+---
+
+## 2b. Account Lockout Policy
+
+**Problem:** No limit on failed login attempts left accounts vulnerable to brute force attacks.
+
+**Policy Applied:**
+
+| Setting | Value | Reason |
+|---------|-------|--------|
+| Account lockout threshold | 3 attempts | Locks account after 3 wrong passwords |
+| Account lockout duration | 30 minutes | How long the account stays locked |
+| Reset lockout counter after | 30 minutes | Resets failed attempt count |
+
+
+**Result:** Any account that receives 3 incorrect password attempts is automatically locked for 30 minutes — directly linked to the account unlock procedure in Scenario 1c.
+
+![Account Lockout Policy](./screenshots/2b-lockout-policy.png)
+
+---
+
+## 2c. Screen Lock — Inactivity Timeout
+
+**Problem:** Employees were leaving their workstations unlocked and unattended.
+
+**Policy Applied:**
+- Machine inactivity limit set to **900 seconds (15 minutes)**
+- Screen locks automatically when no activity is detected
+
+
+**Result:** All workstations now lock automatically after 15 minutes of inactivity, preventing unauthorized access to unattended machines.
+
+![Screen Lock Policy](./screenshots/2c-screen-lock.png)
+
+---
+
+## 2d. Disable Control Panel
+
+**Problem:** Standard users were changing system settings and network configurations, causing IT support issues.
+
+**Policy Applied:**
+- Control Panel and PC Settings fully disabled for all standard users
+
+
+**Result:** Standard users can no longer access Control Panel or PC Settings. Only administrators retain access, reducing unauthorized system changes.
+
+![Control Panel Disabled](./screenshots/2d-control-panel.png)
+
+---
+
+## Applying the Policies
+
+After all settings were configured, policies were pushed immediately to all domain machines using:
+
+```
+gpupdate /force
+```
+
+Run on CLIENT-WIN11 to confirm policies applied without waiting for the default refresh cycle.
+
+![GPUpdate](./screenshots/2e-gpupdate.png)
+
+---
+
+## Summary
+
+| Policy | Setting | Business Impact |
+|--------|---------|----------------|
+| Password Complexity | Enabled, min 8 chars, 90-day expiry | Stronger account security |
+| Account Lockout | 3 attempts, 30 min lock | Brute force protection |
+| Screen Lock | 15 minutes inactivity | Unattended workstation protection |
+| Control Panel | Disabled for standard users | Prevents unauthorized system changes |
+
+> **Key Takeaway:** A single GPO applied at the domain level instantly enforced security standards across every machine in S.K.O Corporation — no manual configuration required on individual PCs. This is the power of centralized Group Policy management.
+
 
 ---
 
