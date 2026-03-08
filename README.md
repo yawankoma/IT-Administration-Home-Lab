@@ -223,7 +223,8 @@ A Group Policy Object (GPO) named **"Password Policy"** was created and linked t
 
 **Result:** All domain users are now required to use strong passwords. Weak passwords are rejected by the system automatically.
 
-![Password Policy](./screenshots/2a-password-policy.png)
+![Password Policy](images/Screenshot13.png)
+![Weak Password](images/Screenshot14.png)
 
 ---
 
