@@ -13,7 +13,6 @@
 - [Scenario 1 — Full User Lifecycle](#scenario-1--full-user-lifecycle)
 - [Scenario 2 — Group Policy Security Controls](#scenario-2--group-policy-security-controls)
 - [Scenario 3 — Shared Folder & Department Permissions](#scenario-3--shared-folder--department-permissions)
-- [Scenario 4 — Security Groups & Access Control](#scenario-4--security-groups--access-control)
 - [Skills Demonstrated](#skills-demonstrated)
 
 ---
@@ -404,11 +403,6 @@ Logged into **CLIENT-WIN11** as HR user `sko\amensah` and tested access:
 
 ---
 
-## Scenario 4 — Security Groups & Access Control
-
-> *Coming soon — Security groups mapped to folder permissions*
-
----
 
 ## Skills Demonstrated
 
