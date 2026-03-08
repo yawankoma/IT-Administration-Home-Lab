@@ -335,6 +335,14 @@ Run on CLIENT-WIN11 to confirm policies applied without waiting for the default 
 
 ---
 
+
+## Summary
+
+> **Key Takeaway:** Security Groups transformed S.K.O Corporation's access control from a manual, error-prone process into a scalable system. One group change instantly updates a user's access across every resource in the domain — exactly how enterprise environments manage permissions at scale.
+
+
+---
+
 # Scenario 4 — Shared Folder & Department Permissions
 
 ## Business Context
@@ -392,10 +400,6 @@ Logged into **CLIENT-WIN11** as HR user `sko\alsmith` and tested access:
 
 
 ---
-
-## Summary
-
-> **Key Takeaway:** Security Groups transformed S.K.O Corporation's access control from a manual, error-prone process into a scalable system. One group change instantly updates a user's access across every resource in the domain — exactly how enterprise environments manage permissions at scale.
 
 
 ## Skills Demonstrated
