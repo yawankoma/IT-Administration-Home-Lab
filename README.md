@@ -168,12 +168,12 @@ sko.com
 **Ticket:** *"Kwame Ofosu's last day is today. Please revoke his access immediately."*
 
 **What I did:**
-- Located `kofosu` in `_FINANCE` OU
+- Located `kofosu` in `FINANCE` OU
 - Right-clicked → **Disable Account**
 - Verified login failed on CLIENT-WIN11 — confirmed error: *"Your account has been disabled"*
-- Right-clicked → **Move** → relocated account to `_DISABLED_ACCOUNTS` OU
+- Right-clicked → **Move** → relocated account to `DISABLED ACCOUNTS` OU
 
-**Result:** Kwame's access was fully revoked within minutes. Account preserved in `_DISABLED_ACCOUNTS` for audit purposes per company policy.
+**Result:** Kwame's access was fully revoked within minutes. Account preserved in `DISABLED ACCOUNTS` for audit purposes per company policy.
 
 ![Account Disabled](images/Screenshot6.png)
 ![Disabled Users OU](images/Screenshot7.png)
@@ -184,9 +184,9 @@ sko.com
 
 | Task | Action Taken | Outcome |
 |------|-------------|---------|
-| Onboarding | Created `alsmith` in `_HR` OU | User logged in successfully |
+| Onboarding | Created `alsmith` in `HR` OU | User logged in successfully |
 | Password Reset | Reset via AD, forced change on login | User regained access |
-| Offboarding | Disabled account, moved to `_DISABLED_ACCOUNTS` | Access fully revoked |
+| Offboarding | Disabled account, moved to `DISABLED ACCOUNTS` | Access fully revoked |
 
 > **Key Takeaway:** This scenario demonstrates the full employee lifecycle that IT administrators handle daily — from day one to the last day — using Active Directory as the single point of control.
 
