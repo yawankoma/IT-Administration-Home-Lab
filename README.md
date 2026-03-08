@@ -1,10 +1,10 @@
-# 🏢 S.K.O Corporation — IT Administration Home Lab
+# S.K.O Corporation — IT Administration Home Lab
 
 > **Simulated enterprise IT environment built to demonstrate real-world Active Directory administration, user lifecycle management, security policy enforcement, and network access controls.**
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Overview](#overview)
 - [Business Context](#business-context)
