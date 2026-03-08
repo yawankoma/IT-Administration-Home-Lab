@@ -161,6 +161,7 @@ sko.com
 **Result:** Alice was able to log back in and set a new personal password.
 
 ![Password Reset](images/Screenshot5.png)
+![Set New Password](images/Screenshot8.png)
 
 ---
 
