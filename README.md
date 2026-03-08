@@ -243,7 +243,7 @@ A Group Policy Object (GPO) named **"Password Policy"** was created and linked t
 
 **Result:** Any account that receives 3 incorrect password attempts is automatically locked for 30 minutes — directly linked to the account unlock procedure in Scenario 1c.
 
-![Account Lockout Policy](images/Screenshot15.png)
+![Account Lockout Policy](images/Screenshot9.png)
 ![Account Lockout Policy](images/Screenshot15.png)
 
 ---
