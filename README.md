@@ -122,8 +122,6 @@ sko.com
 
 ## Scenario 1 — Full User Lifecycle
 
-# Scenario 1 — Full User Lifecycle
-
 ## Business Context
 
 > S.K.O Corporation hired a new HR employee, **Alice Smith**. As the IT Administrator, I was responsible for setting up her account, handling her password reset request, unlocking her account after failed login attempts, and finally offboarding her when she resigned.
