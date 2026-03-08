@@ -107,7 +107,7 @@ sko.com
 
 > *Diagram shows the full network layout including NAT internet access for the Domain Controller and internal network communication between DC01 and CLIENT-WIN11.*
 
-![Network Diagram]("C:\Users\JAY\Downloads\ad.drawio.png")
+![Network Diagram]("images/ad.drawio.png")
 
 **Key points:**
 - The Domain Controller has **two network adapters** — one for internet (NAT) and one for internal VM communication
