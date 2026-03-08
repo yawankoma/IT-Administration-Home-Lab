@@ -164,7 +164,7 @@ sko.com
 
 ---
 
-## 1d. Offboarding — Employee Resignation
+## 1c. Offboarding — Employee Resignation
 
 **Ticket:** *"Kwame Ofosu's last day is today. Please revoke his access immediately."*
 
@@ -185,10 +185,9 @@ sko.com
 
 | Task | Action Taken | Outcome |
 |------|-------------|---------|
-| Onboarding | Created `amensah` in `_HR` OU | User logged in successfully |
+| Onboarding | Created `alsmith` in `_HR` OU | User logged in successfully |
 | Password Reset | Reset via AD, forced change on login | User regained access |
-| Account Unlock | Unlocked via Account Properties | Immediate access restored |
-| Offboarding | Disabled account, moved to `_DISABLED_USERS` | Access fully revoked |
+| Offboarding | Disabled account, moved to `_DISABLED_ACCOUNTS` | Access fully revoked |
 
 > **Key Takeaway:** This scenario demonstrates the full employee lifecycle that IT administrators handle daily — from day one to the last day — using Active Directory as the single point of control.
 
