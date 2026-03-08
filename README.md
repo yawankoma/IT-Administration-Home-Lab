@@ -1,4 +1,4 @@
-# S.K.O Corporation — IT Administration Home Lab
+# S.K.O Corporation - IT Administration Home Lab
 
 > **Simulated enterprise IT environment built to demonstrate real-world Active Directory administration, user lifecycle management, security policy enforcement, and network access controls.**
 
@@ -20,11 +20,11 @@
 
 ## Overview
 
-This project simulates the IT infrastructure of **S.K.O Corporation**, a fictional mid-sized company with departments across HR, IT, and Finance. As the sole IT Administrator, I designed, built, and managed the entire Active Directory environment from scratch — including domain setup, user management, group policy enforcement, and departmental access controls.
+This project simulates the IT infrastructure of **S.K.O Corporation**, a fictional mid-sized company with departments across HR, IT, and Finance. As the sole IT Administrator, I designed, built, and managed the entire Active Directory environment from scratch including domain setup, user management, group policy enforcement, and departmental access controls.
 
 The lab was built entirely on a personal machine using virtualization, demonstrating the ability to work in an enterprise-style Windows environment without requiring physical hardware.
 
-**This is not a tutorial.** Every scenario in this portfolio is based on a real business situation that IT administrators face daily — from onboarding a new hire to locking down sensitive department folders.
+**This is not a tutorial.** Every scenario in this portfolio is based on a real business situation that IT administrators face daily from onboarding a new hire to locking down sensitive department folders.
 
 ---
 
@@ -120,7 +120,7 @@ sko.com
 
 ---
 
-## Scenario 1 — Full User Lifecycle
+## Scenario 1 - Full User Lifecycle
 
 ## Business Context
 
@@ -128,7 +128,7 @@ sko.com
 
 ---
 
-## 1a. Onboarding — New Employee Setup
+## 1a. Onboarding - New Employee Setup
 
 **Ticket:** *"New starter Alice Smith joining HR today. Please create her domain account."*
 
@@ -145,9 +145,9 @@ sko.com
 
 ---
 
-## 1b. Password Reset — Help Desk Request
+## 1b. Password Reset - Help Desk Request
 
-**Ticket:** *"Hi IT, I forgot my password and can't log in. Can you reset it? — Alice"*
+**Ticket:** *"Hi IT, I forgot my password and can't log in. Can you reset it? - Alice"*
 
 **What I did:**
 - Located `alsmith` in Active Directory Users and Computers
@@ -163,7 +163,7 @@ sko.com
 
 ---
 
-## 1c. Offboarding — Employee Resignation
+## 1c. Offboarding - Employee Resignation
 
 **Ticket:** *"Kwame Ofosu's last day is today. Please revoke his access immediately."*
 
@@ -193,7 +193,7 @@ sko.com
 
 ---
 
-## Scenario 2 — Group Policy Security Controls
+## Scenario 2 - Group Policy Security Controls
 
 ## Business Context
 
@@ -304,11 +304,11 @@ Run on CLIENT-WIN11 to confirm policies applied without waiting for the default 
 
 ---
 
-# Scenario 3 — Security Groups & Access Control
+# Scenario 3 - Security Groups & Access Control
 
 ## Business Context
 
-> As S.K.O Corporation grew, managing folder permissions for individual users became unsustainable. Assigning access one person at a time meant every new hire, department transfer, or resignation required manual permission changes across multiple folders. I replaced this with a **Security Group model** — the industry standard for scalable access control in Active Directory environments.
+> As S.K.O Corporation grew, managing folder permissions for individual users became unsustainable. Assigning access one person at a time meant every new hire, department transfer, or resignation required manual permission changes across multiple folders. I replaced this with a **Security Group model** the industry standard for scalable access control in Active Directory environments.
 
 ---
 
@@ -338,12 +338,12 @@ Run on CLIENT-WIN11 to confirm policies applied without waiting for the default 
 
 ## Summary
 
-> **Key Takeaway:** Security Groups transformed S.K.O Corporation's access control from a manual, error-prone process into a scalable system. One group change instantly updates a user's access across every resource in the domain — exactly how enterprise environments manage permissions at scale.
+> **Key Takeaway:** Security Groups transformed S.K.O Corporation's access control from a manual, error-prone process into a scalable system. One group change instantly updates a user's access across every resource in the domain exactly how enterprise environments manage permissions at scale.
 
 
 ---
 
-# Scenario 4 — Shared Folder & Department Permissions
+# Scenario 4 - Shared Folder & Department Permissions
 
 ## Business Context
 
@@ -353,7 +353,7 @@ Run on CLIENT-WIN11 to confirm policies applied without waiting for the default 
 
 ## What I Built
 
-A central shared folder `SKO_Corporation` on **DC01** with three department subfolders. Access is locked down so each department only sees and accesses their own folder — nothing else.
+A central shared folder `SKO_Corporation` on **DC01** with three department subfolders. Access is locked down so each department only sees and accesses their own folder nothing else.
 
 ```
 \\DC01\SKO_Corporation\
@@ -396,7 +396,7 @@ Logged into **CLIENT-WIN11** as HR user `sko\alsmith` and tested access:
 
 ## Summary
 
-> **Key Takeaway:** By combining shared folders with NTFS permissions and the Security Groups from Scenario 3, S.K.O Corporation now has a secure, scalable file access system. Sensitive Finance data is completely invisible to HR and IT staff. Adding a new employee to a Security Group automatically grants them the correct folder access — no manual permission changes needed.
+> **Key Takeaway:** By combining shared folders with NTFS permissions and the Security Groups from Scenario 3, S.K.O Corporation now has a secure, scalable file access system. Sensitive Finance data is completely invisible to HR and IT staff. Adding a new employee to a Security Group automatically grants them the correct folder access no manual permission changes needed.
 
 
 ---
