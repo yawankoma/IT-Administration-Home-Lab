@@ -307,7 +307,119 @@ Run on CLIENT-WIN11 to confirm policies applied without waiting for the default 
 
 ## Scenario 3 — Shared Folder & Department Permissions
 
-> *Coming soon — Department folders with restricted access per OU*
+
+## Business Context
+
+> The Finance Manager at S.K.O Corporation raised a concern: *"Anyone in the company can access our financial files on the server. This needs to be restricted immediately."* I was tasked with creating department-specific shared folders on the server and ensuring each department can only access their own folder — nobody else's.
+
+---
+
+## What I Built
+
+Created three shared folders on **DC01** — one per department. Each folder is accessible only to its respective department users. HR cannot see Finance files. Finance cannot see IT files. And so on.
+
+---
+
+## Step 1 — Create the Folder Structure on DC01
+
+Created a root shared folder on the server with department subfolders:
+
+```
+C:\S.K.O Corporation\
+├── HR\
+├── IT\
+└── Finance\
+```
+
+---
+
+## Step 2 — Share the Root Folder
+
+- Right-clicked `S.K.O Corporation` → **Properties → Sharing → Advanced Sharing**
+- Checked **"Share this folder"**
+- Share name: `S.K.O Corporation`
+- Set share permissions to **Everyone — Read** (NTFS permissions handle the real security)
+
+---
+
+## Step 3 — Set NTFS Permissions Per Folder
+
+This is where the actual access control happens. For each department folder:
+
+### HR Folder
+| User / Group | Permission | Access |
+|-------------|-----------|--------|
+| HR-Group | Modify | Full access to HR folder |
+| IT-Group | Read | IT can read (for support) |
+| Finance-Group | None | No access |
+| Domain Admins | Full Control | Admin access |
+
+### Finance Folder
+| User / Group | Permission | Access |
+|-------------|-----------|--------|
+| Finance-Group | Modify | Full access to Finance folder |
+| IT-Group | Read | IT can read (for support) |
+| HR-Group | None | No access |
+| Domain Admins | Full Control | Admin access |
+
+### IT Folder
+| User / Group | Permission | Access |
+|-------------|-----------|--------|
+| IT-Group | Full Control | Full access to IT folder |
+| HR-Group | None | No access |
+| Finance-Group | None | No access |
+| Domain Admins | Full Control | Admin access |
+
+> **Note:** Security Groups (HR-Group, Finance-Group, IT-Group) were used instead of assigning permissions to individual users. This means adding a new employee to a group automatically grants them the correct folder access — no manual permission changes needed.
+
+---
+
+## Step 4 — Map the Drive on CLIENT-WIN11
+
+Logged into CLIENT-WIN11 as an HR user (`sko\alsmith`) and mapped the shared drive:
+
+```
+\\DC01\S.K.O Corporation
+```
+
+- Opened **File Explorer → This PC → Map Network Drive**
+- Drive letter: `Z:`
+- Path: `\\S.K.O Corporation`
+
+![Mapped Drive](./screenshots/3a-mapped-drive.png)
+
+---
+
+## Step 5 — Test Access Controls
+
+### Test 1 — HR user accessing HR folder
+- Logged in as `sko\alsmith` (HR)
+- Navigated to `Z:\HR` — **Access granted**
+
+### Test 2 — HR user accessing Finance folder
+- Same user navigated to `Z:\Finance`
+- **Access Denied** — permission correctly blocked
+
+![Access Denied](./screenshots/3b-access-denied.png)
+
+### Test 3 — Finance user accessing Finance folder
+- Logged in as Finance user
+- Navigated to `Z:\Finance` — **Access granted**
+
+![Access Granted](./screenshots/3c-access-granted.png)
+
+---
+
+## Summary
+
+| Folder | Accessible By | Blocked From |
+|--------|--------------|-------------|
+| `\HR` | HR-Group, IT-Group | Finance-Group |
+| `\Finance` | Finance-Group, IT-Group | HR-Group |
+| `\IT` | IT-Group | HR-Group, Finance-Group |
+
+> **Key Takeaway:** By combining shared folders with NTFS permissions and security groups, S.K.O Corporation now has a secure, scalable file access system. Adding a new Finance employee simply requires adding them to Finance-Group — their folder access is automatically applied with no extra steps.
+
 
 ---
 
