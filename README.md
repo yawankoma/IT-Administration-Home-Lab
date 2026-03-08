@@ -160,7 +160,7 @@ sko.com
 
 **Result:** Alice was able to log back in and set a new personal password.
 
-![Password Reset](./screenshots/1b-password-reset.png)
+![Password Reset](images/Screenshot5.png)
 
 ---
 
