@@ -259,7 +259,7 @@ A Group Policy Object (GPO) named **"Password Policy"** was created and linked t
 
 **Result:** All workstations now lock automatically after 15 minutes of inactivity, preventing unauthorized access to unattended machines.
 
-![Screen Lock Policy](./screenshots/2c-screen-lock.png)
+![Screen Lock Policy](images/Screenshot10.png)
 
 ---
 
@@ -273,7 +273,7 @@ A Group Policy Object (GPO) named **"Password Policy"** was created and linked t
 
 **Result:** Standard users can no longer access Control Panel or PC Settings. Only administrators retain access, reducing unauthorized system changes.
 
-![Control Panel Disabled](./screenshots/2d-control-panel.png)
+![Control Panel Disabled](images/Screenshot11.png)
 
 ---
 
@@ -287,7 +287,7 @@ gpupdate /force
 
 Run on CLIENT-WIN11 to confirm policies applied without waiting for the default refresh cycle.
 
-![GPUpdate](./screenshots/2e-gpupdate.png)
+![GPUpdate](images/Screenshot12.png)
 
 ---
 
