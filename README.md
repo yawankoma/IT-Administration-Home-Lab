@@ -122,7 +122,76 @@ sko.com
 
 ## Scenario 1 — Full User Lifecycle
 
-> *Coming soon — Onboarding, Password Reset, Account Unlock, Offboarding*
+# Scenario 1 — Full User Lifecycle
+
+## Business Context
+
+> S.K.O Corporation hired a new HR employee, **Alice Smith**. As the IT Administrator, I was responsible for setting up her account, handling her password reset request, unlocking her account after failed login attempts, and finally offboarding her when she resigned.
+
+---
+
+## 1a. Onboarding — New Employee Setup
+
+**Ticket:** *"New starter Alice Smith joining HR today. Please create her domain account."*
+
+**What I did:**
+- Created domain account `alsmith` in Active Directory
+- Placed account in the `_HR` Organizational Unit
+- Set temporary password with **"must change at next logon"** enforced
+- Verified login on CLIENT-WIN11 using `sko\alsmith`
+
+**Result:** Alice successfully logged into her workstation and was prompted to set her own password on first login.
+
+![Onboarding Screenshot](./screenshots/1a-user-created.png)
+![First Login](./screenshots/1a-first-login.png)
+
+---
+
+## 1b. Password Reset — Help Desk Request
+
+**Ticket:** *"Hi IT, I forgot my password and can't log in. Can you reset it? — Alice"*
+
+**What I did:**
+- Located `alsmith` in Active Directory Users and Computers
+- Right-clicked account → **Reset Password**
+- Set a new temporary password
+- Checked **"User must change password at next logon"**
+- Informed Alice of the temporary password via secure channel
+
+**Result:** Alice was able to log back in and set a new personal password.
+
+![Password Reset](./screenshots/1b-password-reset.png)
+
+---
+
+## 1d. Offboarding — Employee Resignation
+
+**Ticket:** *"Kwame Ofosu's last day is today. Please revoke his access immediately."*
+
+**What I did:**
+- Located `kofosu` in `_FINANCE` OU
+- Right-clicked → **Disable Account**
+- Verified login failed on CLIENT-WIN11 — confirmed error: *"Your account has been disabled"*
+- Right-clicked → **Move** → relocated account to `_DISABLED_ACCOUNTS` OU
+
+**Result:** Kwame's access was fully revoked within minutes. Account preserved in `_DISABLED_ACCOUNTS` for audit purposes per company policy.
+
+![Account Disabled](./screenshots/1d-account-disabled.png)
+![Disabled Users OU](./screenshots/1d-disabled-ou.png)
+
+---
+
+## Summary
+
+| Task | Action Taken | Outcome |
+|------|-------------|---------|
+| Onboarding | Created `amensah` in `_HR` OU | User logged in successfully |
+| Password Reset | Reset via AD, forced change on login | User regained access |
+| Account Unlock | Unlocked via Account Properties | Immediate access restored |
+| Offboarding | Disabled account, moved to `_DISABLED_USERS` | Access fully revoked |
+
+> **Key Takeaway:** This scenario demonstrates the full employee lifecycle that IT administrators handle daily — from day one to the last day — using Active Directory as the single point of control.
+
 
 ---
 
