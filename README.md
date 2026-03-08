@@ -326,9 +326,9 @@ Run on CLIENT-WIN11 to confirm policies applied without waiting for the default 
 
 | Group | Location | Members | Purpose |
 |-------|----------|---------|---------|
-| `HRG` | `_HR` OU | HR department users | Controls access to HR resources |
-| `Finance-Group` | `_FINANCE` OU | Finance department users | Controls access to Finance resources |
-| `IT-Group` | `_IT` OU | IT staff | Controls access to IT resources + read access across departments for support |
+| `HRG` | `HR` OU | HR department users | Controls access to HR resources |
+| `FING` | `FINANCE` OU | Finance department users | Controls access to Finance resources |
+| `ITG` | `IT` OU | IT staff | Controls access to IT resources + read access across departments for support |
 
 ![Security Groups in AD](images/Screenshot19.png)
 ![Group Members](images/Screenshot20.png)
@@ -350,8 +350,8 @@ A central shared folder `SKO_Corporation` on **DC01** with three department subf
 ```
 \\DC01\SKO_Corporation\
 ├── HR\        → HRG only
-├── IT\        → IT-Group only
-└── Finance\   → Finance-Group only
+├── IT\        → ITG only
+└── Finance\   → FING only
 ```
 
 ---
@@ -361,8 +361,8 @@ A central shared folder `SKO_Corporation` on **DC01** with three department subf
 | Group | HR Folder | Finance Folder | IT Folder |
 |-------|-----------|---------------|-----------|
 | HRG | Modify | No access | No access |
-| Finance-Group | No access | Modify | No access |
-| IT-Group | Read | Read | Full Control |
+| FING | No access | Modify | No access |
+| ITG | Read | Read | Full Control |
 | Domain Admins | Full Control | Full Control | Full Control |
 
 > IT-Group has read access across all folders for support purposes — but cannot modify or delete department files.
