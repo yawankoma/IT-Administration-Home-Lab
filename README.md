@@ -241,7 +241,7 @@ A Group Policy Object (GPO) named **"Password Policy"** was created and linked t
 | Reset lockout counter after | 30 minutes | Resets failed attempt count |
 
 
-**Result:** Any account that receives 3 incorrect password attempts is automatically locked for 30 minutes — directly linked to the account unlock procedure in Scenario 1c.
+**Result:** Any account that receives 3 incorrect password attempts is automatically locked for 30 minutes directly linked to the account unlock procedure in Scenario 1c.
 
 ![Account Lockout Policy](images/Screenshot9.png)
 ![Account Lockout Policy](images/Screenshot15.png)
@@ -300,7 +300,7 @@ Run on CLIENT-WIN11 to confirm policies applied without waiting for the default 
 | Screen Lock | 15 minutes inactivity | Unattended workstation protection |
 | Control Panel | Disabled for standard users | Prevents unauthorized system changes |
 
-> **Key Takeaway:** A single GPO applied at the domain level instantly enforced security standards across every machine in S.K.O Corporation — no manual configuration required on individual PCs. This is the power of centralized Group Policy management.
+> **Key Takeaway:** A single GPO applied at the domain level instantly enforced security standards across every machine in S.K.O Corporation, no manual configuration required on individual PCs. This is the power of centralized Group Policy management.
 
 ---
 
@@ -347,7 +347,7 @@ Run on CLIENT-WIN11 to confirm policies applied without waiting for the default 
 
 ## Business Context
 
-> The Finance Manager at S.K.O Corporation raised a concern: *"Anyone in the company can access our financial files. This is a serious risk."* As the IT Administrator, I designed and implemented a secure departmental file share on the domain — using the Security Groups created in Scenario 3 to enforce strict access boundaries between departments.
+> The Finance Manager at S.K.O Corporation raised a concern: *"Anyone in the company can access our financial files. This is a serious risk."* As the IT Administrator, I designed and implemented a secure departmental file share on the domain using the Security Groups created in Scenario 3 to enforce strict access boundaries between departments.
 
 ---
 
@@ -387,7 +387,7 @@ Logged into **CLIENT-WIN11** as HR user `sko\alsmith` and tested access:
 | `\\DC01\SKO_Corporation\Finance` |  Folder not visible |
 | `\\DC01\SKO_Corporation\IT` |  Folder not visible |
 
-> Finance and IT folders are completely invisible to HR users — not just blocked, but hidden entirely. Unauthorized users have no visibility into what other departments store on the server.
+> Finance and IT folders are completely invisible to HR users not just blocked, but hidden entirely. Unauthorized users have no visibility into what other departments store on the server.
 
 ![HR Mapped Drive - Only HR Folder Visible](images/Screenshot17.png)
 ![Finance Folder Hidden from HR User](images/Screenshot18.png)
